@@ -15,7 +15,7 @@ public class DemoRestApplication {
 		if(x == null) {
 			throw new Exception("Valor nulo");
 		}
-		if(lista.length == 0) {
+		if(lista==null || lista.length == 0) {
 			throw new Exception("Arreglo vacio");	
 		}
 		

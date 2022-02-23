@@ -22,7 +22,7 @@ class DemoRestApplicationTests {
 	class demo{
 		
 		@Test
-		void debeLanzarExcepcion(){
+		void debeLanzarExcepcionArregloNull(){
 			Integer[] arregloNumeros = null;
 			
 			Integer x = 1;
@@ -32,8 +32,60 @@ class DemoRestApplicationTests {
 			Exception exc= assertThrows(Exception.class, ()->{
 				demoRestApplication.contarVecesNumero(x, arregloNumeros);
 			});
-			System.out.println(exc);
 			assertEquals(exc.getMessage() , mensage);
+			
+			
+		}
+		@Test
+		void debeLanzarExcepcionArregloVacio(){
+			Integer[] arregloNumeros = new Integer[0];
+			
+			Integer x = 1;
+			
+			String mensage="Arreglo vacio";
+			
+			Exception exc= assertThrows(Exception.class, ()->{
+				demoRestApplication.contarVecesNumero(x, arregloNumeros);
+			});
+			assertEquals(exc.getMessage() , mensage);
+			
+			
+		}
+		
+		@Test
+		void debeLanzarExcepcionValorNulo(){
+			Integer[] arregloNumeros = {1,2,3};
+			
+			Integer x = null;
+			
+			String mensage="Valor nulo";
+			
+			Exception exc= assertThrows(Exception.class, ()->{
+				demoRestApplication.contarVecesNumero(x, arregloNumeros);
+			});
+			assertEquals(exc.getMessage() , mensage);
+			
+		}
+		
+		@Test
+		void debeLanzarCeroCoincidencias() throws Exception{
+			Integer[] arregloNumeros = {1,2,3};		
+			Integer x = 20;
+			
+			Integer salida= demoRestApplication.contarVecesNumero(x, arregloNumeros);
+			
+			assertEquals(salida , 0);
+			
+		}
+		
+		@Test
+		void debeLanzarCoincidencias() throws Exception{
+			Integer[] arregloNumeros = {1,2,3};		
+			Integer x = 2;
+			
+			Integer salida= demoRestApplication.contarVecesNumero(x, arregloNumeros);
+			
+			assertEquals(salida , 1);
 			
 		}
 	}
